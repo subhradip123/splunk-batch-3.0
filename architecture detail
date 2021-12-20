@@ -1,0 +1,37 @@
+Architecture detail:(distributed non-clustered environment)
+
+1. Universal forwarder: Install splunk universal forwarder package. Only have CLI does not have any GUI. (inputs.conf, outputs.conf)
+
+2. Heavy forwarder(props.conf, transforms.conf): 
+a>parsing(props.conf)
+
+This is Nagendra. This is Anmay. This is Dinesh. This is Goutham.
+
+....
+This is Nagendra.
+
+This is Anmay.
+
+This is Dinesh.
+
+This is Goutham.
+
+....
+
+This is Nagendra, Nagendra is 25 years old.
+This is Anmay, Anmay is 26 years old.
+
+...
+ This is Nagendra.
+ 
+ Nagendra is 25 years old.
+ 
+ This is Anmay.
+ 
+ Anmay is 26 years old.
+ 
+ 
+
+
+b>masking
+c>filterring
