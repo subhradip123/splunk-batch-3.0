@@ -31,7 +31,79 @@ This is Anmay, Anmay is 26 years old.
  Anmay is 26 years old.
  
  
-
-
 b>masking
-c>filterring
+
+This is Anmay. His acc number is 123456789123.
+
+This is Dinesh. His acc number is 123456789456.
+
+This is Goutham. His acc number is 123456789789.
+
+This is Anmay. His acc number is ********9123.
+
+
+
+c>filterring(transforms.conf)
+
+Anmay logged in from 198.162.52.21.
+
+Dinesh logged out from 198.162.52.22.
+
+Goutham logged in from 198.162.52.23.
+
+
+Indexer:(indexes.conf)
+
+Indexes: The path where we are storing the data.
+
+LM:license master:
+a> License statcking
+5gb/day + 2gb/per ----> 7 gb/day
+
+b> LIcense pooling
+10 gb/day
+pool A: 7 gb/day --->idx
+pool B: 3 gb/day --->SH,DS
+
+License exceed > 5 times in a rolling period of 30 days.
+21-12-21
+
+
+
+20-01-22
+
+<6.5(splunk version) --> indexing continues but cant search the data ---> 'litsearch error'
+>=6.5(splunk version) ---> indexing continues, you can search the data but splunk can take legal action against you or your organization.
+
+license got expired -----> indexing continues but searches blocked.
+
+License master goes down----> >72 hours then your indexing continues but searches blocked.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
