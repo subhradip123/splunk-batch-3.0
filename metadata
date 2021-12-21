@@ -1,0 +1,9 @@
+meta data: Information about data.
+host: IP or hostname from where getting the data.
+source: Actual path of the data.
+sourcetype: logical segregation.
+
+
+browsing:
+download:
+upload:
