@@ -9,7 +9,12 @@ go to the directory where you want to install splunk. the installation package s
 tar xvfz splunkforwarder-8.2.4-87e2dda940d1-Linux-s390x.tgz
 for 1st time accept license.
 
+#SPLUNK_HOME/bin/
 ./splunk start --accept-license
+
+to run splunk at start up
+cd #SPLUNK_HOME/bin/
+./splunk enable boot-start
 
 
 #SPLUNK_HOME/bin/splunk start | stop | status
