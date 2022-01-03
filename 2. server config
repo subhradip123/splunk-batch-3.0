@@ -37,7 +37,7 @@ eg:
 restart splunk.
 
 cross check:
-# cd /opt/splunkforworder/etc/system/local
+# cd /opt/splunk/etc/system/local
 # ls
 outputs.conf
 
