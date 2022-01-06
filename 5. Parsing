@@ -33,4 +33,7 @@ This is Jayanta. Jayanta is 26 years old.
 This is Umesh. Umesh is 27 years old.
 
 
-LINE_BREAKER = (.)
+LINE_BREAKER = (\.)
+
+[text_log]
+LINE_BREAKER = (\.)
