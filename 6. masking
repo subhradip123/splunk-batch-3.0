@@ -1,0 +1,88 @@
+<name> Dinesh loves to eat dosa <name/> <name> Nagendra loves to eat samosa <name/>
+
+
+Dinesh loves to eat dosa
+
+Nagendra loves to eat samosa
+
+
+Masking:
+
+# cd $SPLUNK_HOME/etc/system/local
+
+# cd /opt/splunk/etc/system/local
+
+# vi props.conf
+
+SEDCMD-<class_name> = s/<old_pattern>/<new_pattern>/g
+
+
+
+
+This is Nagendra. 
+
+Nagendra lives in Bangalore.
+
+This Dinesh.
+
+This is Shruti.
+
+
+[sourcetype_name]
+SEDCMD-hidename = s/(?i)nagendra/Goutham/g
+
+eg.
+[text_log]
+SHOULD_LINEMERGE = false
+SEDCMD-hide_name=s/(?i)dinesh/Surya/g
+
+
+docs: https://splunkonbigdata.com/
+
+
+Regular expression:
+check: https://regex101.com/
+cheatsheet: https://www.debuggex.com/cheatsheet/regex/javascript
+
+Dinesh logged in from 192.168.11.12.
+Nagendra logged in from 192.168.112.09.
+Goutham logged in from 192.168.50.21.
+Shruti logged in from 192.168.60.14.
+
+\d+\.\d+\.\d+\.\d+
+
+Dinesh called from +91 1234567890
+
+\+\d+\s\d+
+
+\w --> charecter or alphabet
+\d --> digit
+\s---> space
+? --> 0 or 1 occurance
++ --> 1 or more occurance
+.* --> all
+\. --> .
+\{ --> {
+
+
+eg.
+SEDCMD-hide_IP=s/\d{3}\.\d{3}\.\d{1,3}\.\d{1,3}/***.***.***.***/g
+ this can be used to hide Ip address.
+ 
+
+Rs. 2000 is debited from acc no. 123456789012
+
+
+Want the event like:
+Rs. 2000 is debited from acc no. ********9012
+
+() --> used for capturing groups.
+
+SEDCMD-hide_acc=s/\d{8}(\d{4})/********\1/g
+
+
+
+
+
+Dinesh logged in from 192.168.11.12.
+SEDCMD-hide_IP=s/(\d{3})\.\d{3}\.\d{1,3}\.(\d{1,3})/\1.***.***.\2/g
