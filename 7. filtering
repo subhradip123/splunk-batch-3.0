@@ -1,0 +1,78 @@
+filtering: transforms.conf
+
+HF>>>>>>>>>>
+
+#cd $SPLUNK_HOME/etc/system/local
+
+#cd /opt/splunk/etc/system/local
+
+vi transforms.conf
+
+[<transformation_name>]
+atrribute=<value>
+
+
+1st have to edit props.conf
+[<soucetype_name>]
+TRANSFORMS-<class_name>=<transformation_name1>,<transformation_name2>,<transformation_name3>
+
+............ ingest data which have  the keyword called "Kolkata".........
+
+This is Charan and he lives in Hyderabad.
+This is Subhradip and he lives in Kolkata.
+Hyderabad is famous for biriyani.
+Kolkata is a large city.
+
+
+This is Subhradip and he lives in Kolkata.
+
+Kolkata is a large city.
+
+eg.
+vi props.conf
+[text_log]
+#SHOULD_LINEMERGE = false
+#SEDCMD-hide_acc=s/\d{8}(\d{4})/********\1/g
+TRANSFORMS-filter_city=one,two
+
+vi transforms.conf
+[one]
+REGEX=.
+DEST_KEY=queue
+FORMAT=nullQueue
+
+[two]
+REGEX=(?i)kolkata
+DEST_KEY=queue
+FORMAT=indexQueue
+
+
+
+If you dont want to ingest data which have the keyword "Mumbai"
+
+vi props.conf
+[text_log]
+#SHOULD_LINEMERGE = false
+#SEDCMD-hide_acc=s/\d{8}(\d{4})/********\1/g
+TRANSFORMS-filter_city=mum
+
+
+vi transforms.conf
+
+[mum]
+REGEX=(?i)mumbai
+DEST_KEY=queue
+FORMAT=nullQueue
+
+
+
+
+
+
+
+
+
+
+
+
+
