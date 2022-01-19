@@ -64,6 +64,30 @@ REGEX=(?i)mumbai
 DEST_KEY=queue
 FORMAT=nullQueue
 
+..............field extraction................
+
+vi props.conf
+
+[text_log]
+SHOULD_LINEMERGE = false
+SEDCMD-hide_acc=s/\d{8}(\d{4})/********\1/g
+TRANSFORMS-discard_mumbai=mum
+TRANSFORMS-field=extract
+
+
+vi transforms.conf
+
+[extract]
+REGEX=.*is\s+(\w+)\,.*\s+(\d{3}\.\d{3}\.\d+\.\d+).*port\s+(\d+)
+FORMAT=name=$1 ip=$2 port=$3
+DEST_KEY=_raw
+
+
+events:
+This is Dinesh, he logged in from 192.168.23.65 using port 23
+This is Goutham, he logged in from 192.168.23.68 using port 45
+This is Nagendra, he logged in from 192.168.23.69 using port 62
+
 
 
 
