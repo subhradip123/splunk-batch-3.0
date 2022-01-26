@@ -1,0 +1,74 @@
+Index creation:
+Inside indexer>>>>
+Check indexes:
+# cd $SPLUNK_HOME/var/lib/splunk/
+
+Create index:
+# cd $SPLUNK_HOME/etc/system/local
+
+# vi indexes.conf
+
+[<index_name>]
+homePath=/opt/splunk/var/lib/<index_name>/db
+coldPath=/opt/splunk/var/lib/<index_name>/colddb
+thawedPath=/opt/splunk/var/lib/<index_name>/thaweddb
+
+DB:(data bucket)
+hot
+warm
+cold
+...... retention policy...... frozen state....
+
+thawed
+
+[*retention period: how long the date will be in searchable state.]
+[*If ithe data goes to frozen state, it is not searchable anymore]
+[*If data gone to archive, if need to restore then thawed db is usefull]
+
+.tsidx---> time series index file-->searchable copy of the data.
+rawdata--->row log-->not searchable copy.
+
+
+Bucket rolling criteria--> https://splunkonbigdata.com/bucket-rolling-criteria-in-splunk/
+
+1643212189-1643212189-2803524638481143409
+
+attribute for specify number of warm bucket:
+
+[test_4]
+homePath=/opt/splunk/var/lib/splunk/test_4/db
+coldPath=/opt/splunk/var/lib/splunk/test_4/colddb
+thawedPath=/opt/splunk/var/lib/splunk/test_4/thaweddb
+maxWarmDBCount=1
+
+................Retention period....................
+[test_4]
+homePath=/opt/splunk/var/lib/splunk/test_4/db
+coldPath=/opt/splunk/var/lib/splunk/test_4/colddb
+thawedPath=/opt/splunk/var/lib/splunk/test_4/thaweddb
+maxWarmDBCount=1
+frozenTimePeriodInSecs=60      -----> after 60 secs data in cold db got deleted
+
+
+............Archive data......................
+
+[test_4]
+homePath=/opt/splunk/var/lib/splunk/test_4/db
+coldPath=/opt/splunk/var/lib/splunk/test_4/colddb
+thawedPath=/opt/splunk/var/lib/splunk/test_4/thaweddb
+maxWarmDBCount=1
+frozenTimePeriodInSecs=60
+coldToFrozenDir=/tmp/archive
+
+
+.............restore data...................
+
+# copy the file from archive path to thawed db.
+cp -R /tmp/archive/db_... /opt/splunk/var/lib/splunk/test_4/thaweddb
+
+if you are in thawddb
+cp -R /tmp/archive/db_... .
+
+#run rebuild command:
+#cd /opt/splunk/bin
+#./splunk rebuild /opt/splunk/var/lib/splunk/test_4/thaweddb/db_...
