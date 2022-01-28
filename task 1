@@ -1,0 +1,9 @@
+task 1:
+Do a new onboarding
+index=batch_3
+sourcetype=traininglog
+
+path --- /tmp/company/wipro
+any of .txt format of log
+
+Do line breaking from ?
