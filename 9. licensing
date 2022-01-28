@@ -1,0 +1,10 @@
+Licensing:
+
+License master
+Which instance have the license uploaded to.
+GUI of instance>settings>licensing>add license
+
+License slave
+GUI of the instance>settings>licensing>change to slave>
+put IP of license master along with 8089 port.
+eg. https://172.31.1.105:8089
