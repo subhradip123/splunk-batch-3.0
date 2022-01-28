@@ -1,0 +1,18 @@
+This         is Subhradip.
+This                        is Dinesh.
+This is           Goutham.
+
+supress the spaces.
+
+data will looks like:
+This is Subhradip.
+
+
+This is Goutham. He logged in from 192.168.73.81 using port 43
+This is Nagendra. He logged in from 192.168.120.34 using port 53
+This is Dinesh. He logged in from 192.168.47.24 using port 21
+
+
+data will looks like this:
+This is Goutham. He logged in from 192.xxx.73.xxx using port 4x
+
