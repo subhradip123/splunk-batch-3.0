@@ -1,0 +1,35 @@
+commands:
+
+fields:
+.. | fields <field_name> ---> segregate data against that field name only.
+.. | fields - <field_name> ---> Hifen sign operates as NOT. 
+
+eg.
+index=_internal sourcetype=splunkd_ui_access | fields bytes,status,method,file
+
+index=_internal sourcetype=splunkd_ui_access | fields - bytes
+
+* field names are case sensitive
+* fields command support wild card entry [eg: index=_internal sourcetype=splunkd_ui_access | rename bytes as megabytes_per_sec | fields *sec]
+* fields command in faster than table command.
+
+search:
+.. | search field_name=value
+
+* In search command field values are not case sensitive
+* search command support wild card entry
+
+
+
+operators:
+AND,OR,NOT
+eg:
+index=_internal sourcetype=splunkd_ui_access | table method | dedup method | search method="delete" OR method="head"
+
+index=_internal sourcetype=splunkd_ui_access | table method | dedup method | search NOT method="de*"
+
+index=_internal sourcetype=splunkd_ui_access | table method,file | dedup method,file | search method="get" AND file="splunkd"
+
+
+about where command:
+difference between search and where command?
