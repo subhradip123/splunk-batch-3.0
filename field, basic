@@ -1,0 +1,23 @@
+Anything written inside search box is called a query.
+splunk uses SPL that is spllunk search proccesing language.
+One single piece of data is called event which is equivalant to a log.
+
+
+fields:
+Field is a searchable name or value.
+
+This is Goutham. He logged in from 192.168.73.81 using port 43
+This is Nagendra. He logged in from 192.168.120.34 using port 53
+This is Dinesh. He logged in from 192.168.47.24 using port 21
+
+name:Goutham,Naqendra,Dinesh
+
+IP:192.168.73.81,192.168.120.34,192.168.47.24
+
+Port:43,53,21
+
+If alfa sign appears beside field: the field contains numerical as well as alphabet values.
+If "#" sign appears beside field: the field contains numerical values.
+
+
+URL: http://localhost:8000/en-US/
