@@ -1,0 +1,37 @@
+where:
+... | where field_name=value
+
+difference between search and where command:
+In where command we can compare between values of two fields, in search command it is not possible.
+
+eg.
+index=_internal sourcetype=splunkd_ui_access | table status,bytes | dedup status,bytes | where status>bytes
+
+*where command does not support wild card
+*where is case sensitive
+
+rename: rename fields
+... | rename <field_name> as <new_field_name>
+
+eg. index=_internal sourcetype=splunkd_ui_access | table status,bytes | dedup status,bytes | rename status as http_status
+
+replace: replace field value
+... | replace <old_value> with <new_value> in <field_name>
+eg.
+index=_internal sourcetype=splunkd_ui_access | table status,bytes | dedup status,bytes | replace 2* with 2k in status
+
+table: creates a table with field values.
+
+... | table <field_name_1>,<field_name_2>
+
+eg. index=_internal sourcetype=splunkd_ui_access | table method,status
+
+* table command supports wild card entry.
+
+dedup: 
+.. | dedup <field_name_1>,<field_name_2>
+
+eg. index=_internal sourcetype=splunkd_ui_access | table method | dedup method
+
+
+what is the difference if we use dedup before table command and vice versa.
