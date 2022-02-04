@@ -1,0 +1,49 @@
+top:
+used to fetch maximum occurance of events/field_values.
+
+This is Charan, he lived in Hyderabad.
+This is shruti, she lived in Hyderabad.
+This is Dinesh, he lived in Bangalore.
+This is Subhradip, he lived in Hyderabad.
+This is shruti, she lived in Hyderabad.
+This is Dinesh, he lived in Bangalore.
+This is Surya, he lived in Hyderabad.
+This is shruti, she lived in Hyderabad.
+This is Dinesh, he lived in Bangalore.
+This is Nagendra, he lived in Hyderabad.
+
+.. | top <field_name>
+ 
+ eg.
+ index=_internal sourcetype=splunkd_ui_access | top method 
+ 
+ by default top command returns 10 values. there is another attribute limit=<int>
+ eg.
+ index=_internal sourcetype=splunkd_ui_access | rare limit=20 file
+ 
+ *limit=0 returns all the values.
+ 
+ there are two attributes can be used with top command.
+ showperc=true/false
+ showcount=true/false
+ 
+ rare:
+ 
+ 
+ head:
+ used to show the 1st 10 values.
+ 
+ eg. index=_internal sourcetype=splunkd_ui_access | table file | dedup file | head
+ 
+ tail:
+ opposite to head.
+ 
+ difference between top and head?
+ 
+ sort:
+ .. | sort <field_name>  ---> assending order
+ .. | sort - <filed_name>  --> diccending order
+ 
+ eg.
+ index=_internal sourcetype=splunkd_ui_access | table bytes | dedup bytes | sort - bytes
+ 
