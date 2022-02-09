@@ -1,0 +1,56 @@
+stats:
+used for statictical aggrigations like, min, max,mean,avg,sum,distinct count.
+
+... | stats <stat-func>(<field_name>) as "new_field_name" by <field_name>
+
+count:
+return total incoming events.
+
+eg.
+index=_internal sourcetype=splunkd_ui_access | stats count(status) as count_of_status by method
+
+* you can use multiple splilt by fields.
+eg.
+index=_internal sourcetype=splunkd_ui_access | stats count(status) as count_of_status by method,file
+
+min:
+return the minimum value of a field.
+
+eg.
+index=_internal sourcetype=splunkd_ui_access | stats min(bytes) as lowest_bytes by method
+
+max:
+returns the maximum value of a field.
+
+eg.
+index=_internal sourcetype=splunkd_ui_access | stats max(bytes) as highest_bytes by method
+
+avg:
+eg.
+index=_internal sourcetype=splunkd_ui_access | stats max(bytes) as highest_bytes min(bytes) as lowest_bytes avg(bytes) as average_bytes by method
+
+sum:
+returns summation of field values.
+
+eg.
+index=_internal sourcetype=splunkd_ui_access | stats sum(bytes) as total_bytes by method
+
+list:
+returns list of all field values.
+
+eg.
+index=_internal sourcetype=splunkd_ui_access | stats list(status) by method
+
+
+values:
+returns list of unique values of a field.
+
+eg.
+index=_internal sourcetype=splunkd_ui_access | stats values(status) by method
+
+
+diff between count and distinct count:
+index=_internal sourcetype=splunkd_ui_access | stats count(status) list(status) dc(status) values(status) by method
+
+ex.
+get min,max,avg,sum,unique values of status respect to files [run in 7 days windows]
