@@ -1,0 +1,24 @@
+addcoltotals:
+addcoltotals add one additional row written summation ot the values.
+.. | addcoltotals <field_value>
+
+eg.
+index=_internal sourcetype=splunkd_ui_access | table method bytes status | head 15 | addcoltotals bytes
+
+labelfield attribute shows a string "total" below mentioned field value.
+
+eg. index=_internal sourcetype=splunkd_ui_access | table method bytes status | head 15 | addcoltotals bytes labelfield=method
+
+with label attribute any string an be shown in place of total.
+
+eg.
+index=_internal sourcetype=splunkd_ui_access | table method bytes status | head 15 | addcoltotals bytes labelfield=method label=Summation
+
+
+addtotals:
+add a extra column with the total of field values.
+
+... | addtotals <field_values>
+
+eg.
+index=_internal sourcetype=splunkd_ui_access | dedup file| table method bytes status file | tail 15 | addtotals bytes status
