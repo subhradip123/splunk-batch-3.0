@@ -1,0 +1,52 @@
+timechart:
+It will show statictical aggregation based on time.
+
+all the functions we used in stats command can be used here.
+
+... | timechart function(field_name) by <field_name>
+
+* in timechart command multiple split by field cant be used.
+* multiple func can be used with timechart
+
+eg.
+index=_internal sourcetype=splunkd_ui_access | timechart span=5h count(bytes) as bytes_count max(bytes) as max_bytes min(bytes) as min_bytes avg(bytes) as avg_bytes
+
+
+interval:
+If run for last 24 hours windows, interval would be 30 mins.
+If run for last 60 min windows, interval would be 1 min.
+If run for last 15 mins windows, interval would be 10 secs.
+
+custom interval:
+span is an attribute used for custom interval.
+
+s --> secs
+m -->minutes
+h -->hours
+d -->day
+w --> week
+mon --> month
+
+* by default timechart command return 10 split by field values.
+
+We can change that value by using limit attribute.
+eg.
+index=_internal sourcetype=splunkd_ui_access | timechart limit=15 count by file
+
+task: what is others and null in timechart command?
+
+omit null and other :
+usenull=f used to omit null
+useother=f used to omit other.
+eg.
+index=_internal sourcetype=splunkd_ui_access | timechart limit=15 count by file usenull=f useother=f
+
+
+fillnull:
+fill all the blank values with zero.
+eg.
+index=_internal sourcetype=splunkd_ui_access | timechart span=5h max(bytes) as max_bytes min(bytes) as min_bytes | fillnull
+
+... | fillnull value="..."
+eg.
+index=_internal sourcetype=splunkd_ui_access | timechart span=5h max(bytes) as max_bytes min(bytes) as min_bytes | fillnull value="null"
