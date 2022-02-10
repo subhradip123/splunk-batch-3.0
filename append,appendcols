@@ -1,0 +1,30 @@
+This is Nagendra
+This is Dinesh
+This is       
+
+
+append:
+append the result from another query below 1st query.
+
+eg.
+index=_internal sourcetype=splunkd_ui_access 
+| stats max(bytes) by method 
+| append
+    [| search index=_internal sourcetype=splunkd 
+    | stats count by component]
+	
+	
+appendcols:
+append the result from another query beside 1st query.
+
+eg.
+index=_internal sourcetype=splunkd_ui_access 
+| stats max(bytes) by method 
+| appendcols
+    [| search index=_internal sourcetype=splunkd 
+    | stats count by component]
+	
+	
+	
+task:
+find one disadvantage of appendcols.
