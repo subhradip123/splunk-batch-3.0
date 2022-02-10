@@ -22,3 +22,8 @@ add a extra column with the total of field values.
 
 eg.
 index=_internal sourcetype=splunkd_ui_access | dedup file| table method bytes status file | tail 15 | addtotals bytes status
+
+attributes:
+index=_internal sourcetype=splunkd_ui_access | dedup file| table method bytes status file | tail 15 | addtotals bytes status fieldname="sum"
+
+index=_internal sourcetype=splunkd_ui_access | dedup file| table method bytes status file | tail 15 | addtotals bytes status fieldname="sum" col=f row=t
