@@ -1,0 +1,64 @@
+eval(evaluate)
+We can use any mathemetical logics.
+
+.. | eval "new_field_name"=logic
+
+eg.
+index=_internal sourcetype=splunkd_ui_access 
+| table method bytes status | dedup method bytes status
+| eval "sum"=bytes+status
+
+eg.
+index=_internal sourcetype=splunkd_ui_access 
+| table method bytes status | dedup method bytes status
+| eval "sum"=bytes+status, "div"=bytes/status, "substraction"=bytes-status
+
+concatinate:
+| makeresults 
+| eval "name"="Dinesh", "surname"="Emmandi"
+| eval "full_name"=name." ".surname
+
+*If want to add any string or sign or space have to put inside ""
+
+eg.
+index=_internal sourcetype=splunkd_ui_access 
+| table method bytes status | dedup method bytes status
+| eval "frac"=1/bytes
+| eval "frac"=frac." %"
+
+round up:
+.. | eval "new_field"=round(field_name,<digit>)     [round up to digit desired]
+                     = round(field_name)     [round upto zero decimal]
+
+eg.
+index=_internal sourcetype=splunkd_ui_access 
+| table method bytes status | dedup method bytes status
+| eval "frac"=1/bytes
+| eval "frac"=round(frac,3)
+
+uppercase to lowercase:
+... | eval "new"=upper(field_name)
+... | eval "new"=lower(field_name)
+
+eg.
+index=_internal sourcetype=splunkd_ui_access 
+| table method | dedup method
+| eval "method_lower"=lower(method)
+
+conditional function:
+if...else
+
+.. | eval "new_field_name"=if(condition,"value_to show","else_the_value_to_show")
+
+multiple conditions:
+
+.. | eval "new_field_name"=if(condition_1,"value_to_show",if(condition_2,"value_to_show for condition 2","else value to show"))
+
+eg.
+index=_internal sourcetype=splunkd_ui_access 
+| table bytes | dedup bytes
+| eval "memory_status"=if(bytes<1000,"low_memory_usage",if(bytes>999 AND bytes<2000,"normal_memory_usage","high_memory_usage"))
+
+* Can not use if function without else.
+
+eval case:
