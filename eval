@@ -62,3 +62,27 @@ index=_internal sourcetype=splunkd_ui_access
 * Can not use if function without else.
 
 eval case:
+
+... | eval "new_field_name"=case(case1,"value1",case2,"value2",case3,"value3"...... ,default case,"default value")
+In default case have to give any universal truth,1=1 ,2=2
+
+eg.
+index=_internal sourcetype=splunkd_ui_access 
+| table bytes 
+| dedup bytes 
+| eval "memory_status"=case(bytes<1000,"low_memory_usage",bytes>999 AND bytes<2000,"modarate_memory_usage",bytes>1999 AND bytes<3000,"high_memory_usage",1=1,"need_attention")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
