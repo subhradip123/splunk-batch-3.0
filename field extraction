@@ -1,0 +1,34 @@
+field extraction:
+There are two type of field extraction based on when the field is extracted.
+1.Indextime field extraction:If we extract field before data got indexed, called IFE.
+It can be done on HF OR on IDX.
+
+2.Searchtime field extraction: If we extract field after it get stored in idx, called SFE.
+It can be done on idx, or on SH.
+
+a.Interactive field extraction(IFX)
+Click on left side arrow of every event.
+--> event action dropdown--->select extract fields-->select regular expresion-->next-->select the portion need to extract-->next-->validate--->
+finish.
+
+b.regular expression/rex:
+... | rex field=<field_name or _raw> "..pre pattern..(?<extract_field_name>..extracted pattern..)..post pattern.."
+
+
+\w --> charecter or alphabet
+\d --> digit
+\s---> space
+? --> 0 or 1 occurance
++ --> 1 or more occurance
+.* --> all
+\. --> .
+\{ --> {
+
+eg.
+index=_internal sourcetype="splunkd_ui_access" | rex field=_raw ".*\s+(?<time_taken>\d+ms)" 
+
+index=_internal sourcetype="splunkd_ui_access" | rex field=_raw ".*\((?<OS>\w+\s+\w+\s+\d+\.\d+\;\s+\w+\;\s+\w+)\).*"
+
+index=_internal sourcetype="splunkd_ui_access" | table uri_path | dedup uri_path | rex field=uri_path ".*\/(?<dir>\w+\.?\w+)"
+
+
