@@ -1,0 +1,60 @@
+look up:
+
+This is Charan. He is in AMD project.
+This is Dinesh. He is in Lyodd bank project.
+This is Goutham. He is in Uber project.
+
+
+Name         Salary
+Charan		 60k
+Dinesh       62k
+Goutham      61k
+
+inputlookup:
+| inputlookup <loookupfile.csv>    -------> see the containts of lookup file
+
+eg. | inputlookup test_lookup.csv
+
+.. | outputlookup <lookupfile.csv>  ----> save csv file
+eg. | inputlookup test_lookup.csv 
+| append 
+    [| makeresults 
+    | eval "host"="Goutham", "http_method"="HOME" 
+    | fields - _time]
+    | outputlookup test_lookup.csv
+
+lookup:
+.. | lookup <lookupfile.csv> field_from_csv as field_to_be_mathed_with output(for overwriting values)/outputnew(for not overwrite value) which_field_to_be_shown_from_csv
+
+
+This is Charan. He is in AMD project. His salary is 70k.
+This is Dinesh. He is in Lyodd bank project.
+This is Goutham. He is in Uber project.
+
+
+Name         Salary
+Charan		 60k
+Dinesh       62k
+Goutham      61k
+
+eg.
+index=_internal sourcetype="splunkd_ui_access" 
+| table method,status 
+| dedup method,status
+| lookup test_lookup.csv http_method as method outputnew
+
+
+lookup definition:
+settings-->lookups-->lookup definintion-->new lookup definition
+give a name
+type-file_based
+lookup file-- select one
+
+
+automatic lookup:
+* before automatic lookup always create lookup definition.
+
+eg. index=_internal sourcetype="splunkd_ui_access" | table method,host_name | dedup method,host_name
+
+
+* self study macroes 
