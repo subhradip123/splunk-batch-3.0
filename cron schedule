@@ -1,0 +1,33 @@
+10 reports to run in one hour.
+9 reports runs succesfully.
+
+cron schedule:
+* * * * *
+1 2 3 4 5
+
+1-->minutes of an hour(0-59)
+2-->hour of a day(0-23)
+3-->day of a month(1-31)
+4-->month of a year(1-12)
+5-->day of a week(0-7) [0/7-sunday,1-monday,2-tuesday......]
+
+https://crontab.guru/
+
+eg:
+25 * * * *-->6:25,7:25,8:25
+10,30 * * * *-->6:10,6:30,7:10,7:30....
+*/5 * * * *-->6:05,6:10,6:15......
+
+0 6 * * *-->6:00
+15 6 * * *-->6:15
+15 6,18 * * *-->6:15am,6:15pm
+0 */3 * * *-->12:00,3:00,6:00...
+
+0 10 20 * *-->on 20th at 10:00
+15 7 4 * *-->on 4th 7:15
+0 6 */5 * *-->every 5 days at 6:00
+
+0 6 * 2 *-->feb every day at 6:00
+
+0 6 * * 2 --> tuesday at 6:00
+
